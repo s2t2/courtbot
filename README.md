@@ -10,14 +10,38 @@ Specifically, the twilio features include:
 
 ## Running Locally
 
+### Prerequisites
+
 First, install [node](https://github.com/codeforamerica/howto/blob/master/Node.js.md), [postgres](https://github.com/codeforamerica/howto/blob/master/PostgreSQL.md), and [foreman](https://github.com/ddollar/foreman).
+
+```` sh
+brew install node
+````
+
+```` sh
+brew install postgresql
+ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist # or `lunchy start postgresql`
+````
+
+```` sh
+gem install foreman # requires ruby and rubygems
+````
+
+Install node package dependencies.
+
+```` sh
+git clone https://github.com/s2t2/courtbot.git
+cd courtbot
+npm install
+````
 
 Then, to create the tables and load in initial data:
 
 ```console
 node utils/createQueuedTable.js
 node utils/createRemindersTable.js
-node loaddata.js
+node utils/loaddata.js
 ```
 
 Since the app uses twilio to send text messages, it requires a bit of configuration. Get a [twilio account](http://www.twilio.com/), create a .env file by running `mv .env.sample .env`, and add your twilio authentication information. While you're there, add a cookie secret and an encryption key (long random strings).

@@ -8,6 +8,10 @@
   },
   "author": "Sam Hashemi",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/s2t2/courtbot.git"
+  },
   "engines": {
     "node": "0.10.x"
   },
